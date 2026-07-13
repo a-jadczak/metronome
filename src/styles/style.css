@@ -30,6 +30,7 @@
   /* ===== Shapes ===== */
   --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
   --metronome-head: polygon(95% 70%, 100% 100%, 0% 100%, 5% 70%, 50% 5%);
+  --metronome-case: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
 }
 
 * {
@@ -65,8 +66,8 @@ main {
 .metronome__head {
   background-color: var(--wood);
   clip-path: var(--metronome-head);
-  height: 55px;
   width: 60%;
+  height: 55px;
   position: absolute;
   left: 20%;
   bottom: 50lvh;
@@ -78,7 +79,17 @@ main {
   clip-path: var(--trapezoid);
   width: 325px;
   height: 50lvh;
-  bottom: 0;
   position: absolute;
+  bottom: 0;
   z-index: 0;
+}
+
+.metronome__case {
+  background-color: var(--wood);
+  clip-path: var(--metronome-case);
+  width: 100%;
+  height: 20lvh;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 }
