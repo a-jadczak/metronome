@@ -1,11 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+  /* ===== Colors ===== */
   --gradient: rgba(0, 0, 0, 0.1);
+
+  --wood-dark: #4E2E1E;
+  --wood: #6B4226;
+  --wood-light: #8A5A3B;
+  --wood-highlight: #A8714A;
+
+  --black: #1A1A1A;
+  --black-soft: #2D2D2D;
+  --black-light: #444444;
+
+  --gold-dark: #A67C00;
+  --gold: #D4AF37;
+  --gold-light: #F2D675;
+  --gold-highlight: #FFF1B5;
+
+  --silver-dark: #8A9099;
+  --silver: #BFC5CC;
+  --silver-light: #E2E5E9;
+  --silver-highlight: #F8F9FA;
+
+  --white: #FFFFFF;
+  --gray: #707070;
+  --gray-light: #D9D9D9;
+
+  /* ===== Shapes ===== */
+  --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  --metronome-head: polygon(95% 70%, 100% 100%, 0% 100%, 5% 70%, 50% 5%);
 }
 
 * {
   font-family: Roboto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -17,4 +48,37 @@ body {
 h1 {
   text-align: center;
   font-size: 3.5rem;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  background-color: var(--gray-light);
+}
+
+#metronome {
+  width: 325px;
+  height: 55lvh;
+  position: relative;
+}
+
+.metronome__head {
+  background-color: var(--wood);
+  clip-path: var(--metronome-head);
+  height: 55px;
+  width: 60%;
+  position: absolute;
+  left: 20%;
+  bottom: 50lvh;
+  z-index: 1;
+}
+
+.metronome__body {
+  background-color: var(--black-soft);
+  clip-path: var(--trapezoid);
+  width: 325px;
+  height: 50lvh;
+  bottom: 0;
+  position: absolute;
+  z-index: 0;
 }
