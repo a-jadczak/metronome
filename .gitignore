@@ -1,0 +1,6 @@
+# Preview screenshots and generated app images
+preview/
+
+# Local Codex and agent workspace files
+.agents/
+.codex/
