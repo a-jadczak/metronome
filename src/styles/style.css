@@ -31,6 +31,7 @@
   --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
   --metronome-head: polygon(95% 70%, 100% 100%, 0% 100%, 5% 70%, 50% 5%);
   --metronome-case: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+  --metronome-foot: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
 }
 
 * {
@@ -92,4 +93,23 @@ main {
   position: absolute;
   bottom: 0;
   z-index: 1;
+}
+
+.metronome__feet-container {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 50px;
+  position: absolute;
+  bottom: -25px;
+  z-index: 0;
+}
+
+.metronome__foot {
+  background-color: var(--black-soft);
+  clip-path: var(--metronome-foot);
+  height: 50px;
+  width: 50px;
 }
