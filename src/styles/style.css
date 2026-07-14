@@ -29,6 +29,7 @@
 
   /* ===== Shapes ===== */
   --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  --trapezoid-reversed: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
   --metronome-head: polygon(95% 70%, 100% 100%, 0% 100%, 5% 70%, 50% 5%);
   --metronome-case: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
   --metronome-foot: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
@@ -136,6 +137,49 @@ main {
   top: -20px;
   left: 20px;
   transform: rotate(90deg);
+}
+
+#metronome__pendulum {
+  width: 15px;
+  height: 33svh;
+  background-color: var(--silver-dark);
+  position: absolute;
+  bottom: 30%;
+  left: calc(50% - 7.5px); /* 7.5px is half the width of the pendulum, so to center it we subtract it from 50% */
+  right: 50%;
+  z-index: 1;
+  transform-origin: bottom center;
+  /*transform: rotate(-75deg);*/
+}
+
+.metronome__sliding-weight {
+  background-color: var(--black);
+  clip-path: var(--trapezoid-reversed);
+  width: 400%;
+  position: absolute;
+  top: 50%;
+  left: -150%;
+  height: 50px;
+  border-radius: 5%;
+}
+
+.metronome__sliding-weight::before,
+.metronome__sliding-weight::after {
+  content: "";
+  background-color: var(--black-soft);
+  border: 2px solid var(--silver-dark);
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  position: absolute;
+  top: 6.5px;
+}
+.metronome__sliding-weight::before {
+  left: 8.5px;
+}
+
+.metronome__sliding-weight::after {
+  right: 8.5px;
 }
 
 .metronome__feet-container {
