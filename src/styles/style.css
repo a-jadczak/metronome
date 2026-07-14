@@ -33,6 +33,7 @@
   --metronome-case: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
   --metronome-foot: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
   --metronome-knob: polygon(15% 70%, 0% 75%, 0% 25%, 15% 30%, 25% 40%, 60% 40%, 60% 10%, 80% 25%, 80% 75%, 60% 90%, 60% 60%, 25% 60%);
+  --metronome-winding-key: polygon(100% 50%, 50% 100%, 50% 65%, 75% 40%, 49% 15%, 25% 40%, 50% 65%, 50% 100%, 0% 50%, 20% 0%, 80% 0%);;
 }
 
 * {
@@ -101,7 +102,7 @@ main {
   width: 50px;
   height: 10px;
   position: absolute;
-  bottom: 27.5%;
+  bottom: 30%;
   right: 7%;
 }
 
@@ -114,6 +115,27 @@ main {
   position: absolute;
   top: -20px;
   left: 50px;
+}
+
+.metronome__winding-key {
+  background-color: var(--silver-dark);
+  width: 30px;
+  height: 10px;
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+}
+
+.metronome__winding-key::after {
+  content: "";
+  clip-path: var(--metronome-winding-key);
+  background-color: var(--silver-dark);
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  transform: rotate(90deg);
 }
 
 .metronome__feet-container {
