@@ -27,7 +27,17 @@ beatsSlider.addEventListener("input", function(e) {
 
 toggleMetronomeButton.addEventListener("click", function (e) {
   isPlaying = !isPlaying;
-  toggleMetronomeButton.textContent = isPlaying ? "STOP" : "START"
+  if (isPlaying) {
+    setButtonValues("STOP", "active")
+  }
+  else {
+    setButtonValues("START", "inactive")
+  }
+
+  function setButtonValues(textContent, attributeValue) {
+    toggleMetronomeButton.textContent = textContent
+    toggleMetronomeButton.setAttribute("data-state", attributeValue)
+  }
 })
 
 function setDefaultSettings() {

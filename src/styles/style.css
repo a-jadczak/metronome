@@ -318,4 +318,14 @@ input {
   padding: .5rem;
   font-size: 1.25rem;
   cursor: pointer;
+  width: 5.25rem;
+  border: 2px solid var(--black-light);
+  border-radius: 12px;
+  transition: .2s;
+}
+
+#toggle-metronome-button[data-state="active"] {
+  background-color: var(--black-light);
+  color: var(--white);
+  transform: scale(0.95);
 }
