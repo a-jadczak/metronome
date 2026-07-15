@@ -292,3 +292,30 @@ main {
     padding-block: 0.5rem 1.5rem;
   }
 }
+
+footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  text-align: center;
+}
+input {
+  cursor: grab;
+}
+
+#toggle-metronome-button {
+  padding: .5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
