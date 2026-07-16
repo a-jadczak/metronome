@@ -1,0 +1,32 @@
+@keyframes pendulum-swing-animation {
+  0%,
+  50%,
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  25% {
+    transform: translateX(-50%) rotate(var(--offset));
+  }
+
+  75% {
+    transform: translateX(-50%) rotate(calc(var(--offset) * -1));
+  }
+}
+
+@keyframes pendulum-center-animation {
+  from,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flip-forward {
+  from {
+    transform: rotateX(0deg);
+  }
+
+  to {
+    transform: rotateX(180deg);
+  }
+}

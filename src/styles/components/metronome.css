@@ -1,0 +1,199 @@
+#metronome {
+  position: relative;
+  width: clamp(210px, min(70vw, 100svh), 400px);
+  aspect-ratio: var(--metronome-ratio);
+}
+
+.metronome__head {
+  position: absolute;
+  top: -2%;
+  left: 20%;
+  z-index: 4;
+  width: 60%;
+  height: 10%;
+  background-color: var(--wood);
+  clip-path: var(--metronome-head);
+}
+
+.metronome__body {
+  position: absolute;
+  top: var(--body-top);
+  right: 0;
+  bottom: var(--body-bottom);
+  left: 0;
+  z-index: 0;
+  background-color: var(--black-soft);
+  clip-path: var(--trapezoid);
+}
+
+.metronome__case {
+  position: absolute;
+  right: 0;
+  bottom: var(--body-bottom);
+  left: 0;
+  z-index: 3;
+  height: var(--case-height);
+  background-color: var(--wood);
+  clip-path: var(--metronome-case);
+}
+
+.metronome__tempo-scale-board {
+  position: absolute;
+  top: 5%;
+  left: 42.5%;
+  z-index: 1;
+  width: 15%;
+  height: 55%;
+  padding-top: 20px;
+  background-color: var(--gold-light);
+  text-align: center;
+  font-size: min(1.25vmax, 0.6rem);
+  word-spacing: 15px;
+}
+
+.metronome__tempo-scale-board > span {
+  position: relative;
+  display: inline-block;
+  width: 3ch;
+  margin: 0 6px;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+}
+
+.metronome__tempo-scale-board > span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+.metronome__tempo-scale-board > span:nth-child(even) {
+  transform: translateY(5px);
+}
+
+.metronome__tempo-scale-board > span:last-child {
+  display: block;
+  text-align: left;
+}
+
+#metronome__pendulum {
+  --offset: 50deg;
+
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  z-index: 2;
+  width: 4.6%;
+  height: 54%;
+  min-width: 7px;
+  background-color: var(--silver-dark);
+  transform: translateX(-50%);
+  transform-origin: 50% 94%;
+}
+
+#metronome__pendulum[data-state="swing"],
+#metronome__pendulum[data-state="return"] {
+  animation:
+    pendulum-swing-animation var(--pendulum-swing-duration) linear infinite,
+    pendulum-center-animation var(--pendulum-center-duration) linear infinite;
+}
+
+.metronome__sliding-weight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400%;
+  height: 17.5%;
+  min-height: 28px;
+  border-radius: 4%;
+  background-color: var(--black);
+  clip-path: var(--trapezoid-reversed);
+  transform: translateX(-50%);
+}
+
+.metronome__sliding-weight::before,
+.metronome__sliding-weight::after {
+  content: "";
+  position: absolute;
+  top: 22%;
+  width: 18%;
+  aspect-ratio: 1;
+  border: 2px solid var(--silver-dark);
+  border-radius: 50%;
+  background-color: var(--black-soft);
+}
+
+.metronome__sliding-weight::before {
+  left: 14%;
+}
+
+.metronome__sliding-weight::after {
+  right: 14%;
+}
+
+.metronome__beat-knob,
+.metronome__winding-key {
+  position: absolute;
+  z-index: 2;
+  height: 1.8%;
+  min-height: 5px;
+  background-color: var(--silver-dark);
+  perspective: 800px;
+}
+
+.metronome__beat-knob {
+  right: 7%;
+  bottom: 36%;
+  width: 15%;
+}
+
+.metronome__beat-knob::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--silver-dark);
+  clip-path: var(--metronome-knob);
+  transform: translateY(-50%);
+}
+
+.metronome__winding-key {
+  right: 0;
+  bottom: 18%;
+  width: 9%;
+}
+
+.metronome__winding-key::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  width: 165%;
+  aspect-ratio: 1;
+  background-color: var(--silver-dark);
+  clip-path: var(--metronome-winding-key);
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.metronome__feet-container {
+  position: absolute;
+  right: 7%;
+  bottom: 0;
+  left: 7%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  height: 8%;
+}
+
+.metronome__foot {
+  width: 14%;
+  height: 100%;
+  background-color: var(--black-soft);
+  clip-path: var(--metronome-foot);
+}

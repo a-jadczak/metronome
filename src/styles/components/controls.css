@@ -1,0 +1,33 @@
+footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  text-align: center;
+}
+
+input[type="range"] {
+  cursor: grab;
+}
+
+input[type="range"]:disabled {
+  cursor: not-allowed;
+}
+
+#toggle-metronome-button {
+  width: 5.25rem;
+  padding: 0.5rem;
+  border: 2px solid var(--black-light);
+  border-radius: 12px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#toggle-metronome-button[data-state="active"] {
+  color: var(--white);
+  background-color: var(--black-light);
+  transform: scale(0.95);
+}

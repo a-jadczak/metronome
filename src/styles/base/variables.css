@@ -1,0 +1,42 @@
+:root {
+  /* Colors */
+  --gradient: rgba(0, 0, 0, 0.1);
+
+  --wood-dark: #4e2e1e;
+  --wood: #6b4226;
+  --wood-light: #8a5a3b;
+  --wood-highlight: #a8714a;
+
+  --black: #1a1a1a;
+  --black-soft: #2d2d2d;
+  --black-light: #444444;
+
+  --gold-dark: #a67c00;
+  --gold: #d4af37;
+  --gold-light: #f2d675;
+  --gold-highlight: #fff1b5;
+
+  --silver-dark: #8a9099;
+  --silver: #bfc5cc;
+  --silver-light: #e2e5e9;
+  --silver-highlight: #f8f9fa;
+
+  --white: #ffffff;
+  --gray: #707070;
+  --gray-light: #d9d9d9;
+
+  /* Shapes */
+  --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  --trapezoid-reversed: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+  --metronome-head: polygon(95% 70%, 100% 100%, 0% 100%, 5% 70%, 50% 5%);
+  --metronome-case: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+  --metronome-foot: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+  --metronome-knob: polygon(15% 70%, 0% 75%, 0% 25%, 15% 30%, 25% 40%, 60% 40%, 60% 10%, 80% 25%, 80% 75%, 60% 90%, 60% 60%, 25% 60%);
+  --metronome-winding-key: polygon(100% 50%, 50% 100%, 50% 65%, 75% 40%, 49% 15%, 25% 40%, 50% 65%, 50% 100%, 0% 50%, 20% 0%, 80% 0%);
+
+  /* Instrument proportions */
+  --metronome-ratio: 13 / 20;
+  --body-top: 8%;
+  --body-bottom: 7%;
+  --case-height: 32%;
+}

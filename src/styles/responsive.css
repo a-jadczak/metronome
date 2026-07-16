@@ -1,0 +1,27 @@
+@media (max-width: 480px) {
+  header {
+    padding-top: 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  main {
+    padding-inline: 2rem;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 481px) {
+  header {
+    padding-block: 0.5rem 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    padding-block: 0.5rem 1.5rem;
+  }
+}
