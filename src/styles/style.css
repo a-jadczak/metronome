@@ -155,8 +155,27 @@ main {
   display: block;
 }
 
+@keyframes pendulum-swing {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  25% {
+    transform: translateX(-50%) rotate(var(--offset));
+  }
+
+  75% {
+    transform: translateX(-50%) rotate(calc(var(--offset) * -1));
+  }
+
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+}
 
 #metronome__pendulum {
+  --offset: 50deg;
+
   position: absolute;
   top: 10%;
   left: 50%;
@@ -167,6 +186,10 @@ main {
   background-color: var(--silver-dark);
   transform: translateX(-50%);
   transform-origin: 50% 94%;
+}
+
+#metronome__pendulum[data-state="active"] {
+  animation: pendulum-swing var(--pendulum-swing-duration) linear infinite;
 }
 
 .metronome__sliding-weight {
@@ -320,8 +343,11 @@ footer > div {
 label {
   text-align: center;
 }
-input {
+input[type="range"] {
   cursor: grab;
+}
+input[type="range"]:disabled {
+  cursor: not-allowed;
 }
 
 #toggle-metronome-button {
