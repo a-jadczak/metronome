@@ -66,11 +66,13 @@ function updatePlaybackUI(buttonText, buttonState, windingKeyAnimation) {
 
 function setPlaybackState(playbackState) {
   const isAnimating = playbackState !== PLAYBACK_STATE.IDLE;
+  const isReturning = playbackState === PLAYBACK_STATE.RETURN;
 
   metronome.playbackState = playbackState;
   pendulumElement.dataset.state = playbackState;
   tempoSlider.toggleAttribute('disabled', isAnimating);
   beatsSlider.toggleAttribute('disabled', isAnimating);
+  toggleMetronomeButton.toggleAttribute('disabled', isReturning);
   clearInterval(metronomeInterval);
 
   if (playbackState === PLAYBACK_STATE.RETURN) {
