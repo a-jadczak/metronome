@@ -155,8 +155,10 @@ main {
   display: block;
 }
 
-@keyframes pendulum-swing {
-  0% {
+@keyframes pendulum-swing-animation {
+  0%,
+  50%,
+  100% {
     transform: translateX(-50%) rotate(0deg);
   }
 
@@ -167,9 +169,12 @@ main {
   75% {
     transform: translateX(-50%) rotate(calc(var(--offset) * -1));
   }
+}
 
-  100% {
-    transform: translateX(-50%) rotate(0deg);
+@keyframes pendulum-center-animation {
+  from,
+  to {
+    opacity: 1;
   }
 }
 
@@ -188,8 +193,11 @@ main {
   transform-origin: 50% 94%;
 }
 
-#metronome__pendulum[data-state="active"] {
-  animation: pendulum-swing var(--pendulum-swing-duration) linear infinite;
+#metronome__pendulum[data-state="swing"],
+#metronome__pendulum[data-state="return"] {
+  animation:
+    pendulum-swing-animation var(--pendulum-swing-duration) linear infinite,
+    pendulum-center-animation var(--pendulum-center-duration) linear infinite;
 }
 
 .metronome__sliding-weight {
@@ -237,10 +245,10 @@ main {
 
 @keyframes flip-forward {
   from {
-    transform:  rotateX(0deg);
+    transform: rotateX(0deg);
   }
   to {
-    transform:  rotateX(180deg);
+    transform: rotateX(180deg);
   }
 }
 
