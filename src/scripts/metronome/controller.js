@@ -15,6 +15,16 @@ import {
 
 let metronomeInterval;
 
+function setTempo(tempo) {
+  metronome.tempo = tempo;
+  renderTempo(tempo, metronome.getSecondsPerBeat());
+}
+
+function setBeats(beats) {
+  metronome.beats = beats;
+  renderBeats(beats);
+}
+
 function startMetronomeInterval() {
   const millisecondsPerBeat = metronome.getSecondsPerBeat() * 1000;
 
@@ -35,13 +45,11 @@ function setPlaybackState(playbackState) {
 }
 
 function handleTempoInput(event) {
-  metronome.tempo = event.currentTarget.valueAsNumber;
-  renderTempo(tempo, metronome.getSecondsPerBeat());
+  setTempo(event.currentTarget.valueAsNumber);
 }
 
 function handleBeatsInput(event) {
-  metronome.beats = event.currentTarget.valueAsNumber;
-  renderBeats(beats);
+  setBeats(event.currentTarget.valueAsNumber);
 }
 
 function handlePlaybackToggle() {
