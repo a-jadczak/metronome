@@ -1,0 +1,10 @@
+export const tempoScaleBoard = document.querySelector('.metronome__tempo-scale-board');
+export const tempoSlider = document.querySelector('#tempo-slider');
+export const tempoSliderLabel = document.querySelector('label[for="tempo-slider"]');
+export const beatsSlider = document.querySelector('#beats-slider');
+export const beatsSliderLabel = document.querySelector('label[for="beats-slider"]');
+export const toggleMetronomeButton = document.querySelector('#toggle-metronome-button');
+export const pendulumElement = document.querySelector('#metronome__pendulum');
+export const slidingWeightElement = document.querySelector('.metronome__sliding-weight');
+export const beatKnobElement = document.querySelector('.metronome__beat-knob');
+export const windingKeyElement = document.querySelector('.metronome__winding-key');
