@@ -1,65 +1,86 @@
 import { TEMPOS } from './scripts/constant/tempos.js';
-
-const MAX_BEATS = 8;
+import {
+  DEFAULT_BEATS,
+  DEFAULT_TEMPO,
+  WEIGHT_TRAVEL_PERCENT,
+  WINDING_KEY_ANIMATION,
+} from './scripts/constant/settings.js';
 
 const tempoScaleBoard = document.querySelector('.metronome__tempo-scale-board');
 const tempoSlider = document.querySelector('#tempo-slider');
-const tempoSliderLabel = document.querySelector('label[for="tempo-slider"]')
+const tempoSliderLabel = document.querySelector('label[for="tempo-slider"]');
 const beatsSlider = document.querySelector('#beats-slider');
-const beatsSliderLabel = document.querySelector('label[for="beats-slider"]')
+const beatsSliderLabel = document.querySelector('label[for="beats-slider"]');
 const toggleMetronomeButton = document.querySelector('#toggle-metronome-button');
-
-const pendulumElement = document.querySelector('#metronome__pendulum');
 const slidingWeightElement = document.querySelector('.metronome__sliding-weight');
 const beatKnobElement = document.querySelector('.metronome__beat-knob');
 const windingKeyElement = document.querySelector('.metronome__winding-key');
 
-let tempoScale = 120;
-let beats = 1;
-let isPlaying = false;
+const state = {
+  tempo: DEFAULT_TEMPO,
+  beats: DEFAULT_BEATS,
+  isPlaying: false,
+};
 
-tempoScaleBoard.innerHTML = TEMPOS.map(tempo => `<span>${tempo}</span>`).join('');
-
-tempoSlider.addEventListener("input", function(e) {
-  const value = e.target.valueAsNumber;
-  tempoScale = value;
-  tempoSliderLabel.textContent = `${value} BPM`;
-  const inputRange = Number(e.target.max) - Number(e.target.min);
-  const weightPosition = ((value - Number(e.target.min)) / inputRange) * 75;
-
-  slidingWeightElement.style.top = `${weightPosition}%`;
-})
-
-beatsSlider.addEventListener("input", function(e) {
-  const value = e.target.value;
-  beats = Number(value)
-  beatsSliderLabel.textContent = `Beats: ${value}`;
-  beatKnobElement.style.right = `${MAX_BEATS - beats}%`; /* Position is based on the beats value */
-})
-
-
-
-
-toggleMetronomeButton.addEventListener("click", function (e) {
-  isPlaying = !isPlaying;
-  if (isPlaying) {
-    setButtonValues("STOP", "active")
-    windingKeyElement.style.animation = "flip-forward 0.75s ease-out";
-  }
-  else {
-    setButtonValues("START", "inactive")
-    windingKeyElement.style.animation = "";
-  }
-
-  function setButtonValues(textContent, attributeValue) {
-    toggleMetronomeButton.textContent = textContent
-    toggleMetronomeButton.setAttribute("data-state", attributeValue)
-  }
-})
-
-function setDefaultSettings() {
-  tempoSlider.value = tempoScale;
-  beatsSlider.value = beats;
+function renderTempoScale() {
+  tempoScaleBoard.innerHTML = TEMPOS
+    .map((tempo) => `<span>${tempo}</span>`)
+    .join('');
 }
 
-setDefaultSettings();
+function getRangeProgress(input, value) {
+  const min = Number(input.min);
+  const max = Number(input.max);
+
+  return (value - min) / (max - min);
+}
+
+function setTempo(tempo) {
+  state.tempo = tempo;
+  tempoSlider.value = tempo;
+  tempoSliderLabel.textContent = `${tempo} BPM`;
+
+  const weightPosition = getRangeProgress(tempoSlider, tempo) * WEIGHT_TRAVEL_PERCENT;
+  slidingWeightElement.style.top = `${weightPosition}%`;
+}
+
+function setBeats(beats) {
+  state.beats = beats;
+  beatsSlider.value = beats;
+  beatsSliderLabel.textContent = `Beats: ${beats}`;
+
+  const maxBeats = Number(beatsSlider.max);
+  beatKnobElement.style.right = `${maxBeats - beats}%`;
+}
+
+function setPlayback(isPlaying) {
+  state.isPlaying = isPlaying;
+  toggleMetronomeButton.textContent = isPlaying ? 'STOP' : 'START';
+  toggleMetronomeButton.dataset.state = isPlaying ? 'active' : 'inactive';
+  windingKeyElement.style.animation = isPlaying ? WINDING_KEY_ANIMATION : '';
+}
+
+function handleTempoInput(event) {
+  setTempo(event.currentTarget.valueAsNumber);
+}
+
+function handleBeatsInput(event) {
+  setBeats(event.currentTarget.valueAsNumber);
+}
+
+function handlePlaybackToggle() {
+  setPlayback(!state.isPlaying);
+}
+
+function initializeMetronome() {
+  renderTempoScale();
+  setTempo(state.tempo);
+  setBeats(state.beats);
+  setPlayback(state.isPlaying);
+
+  tempoSlider.addEventListener('input', handleTempoInput);
+  beatsSlider.addEventListener('input', handleBeatsInput);
+  toggleMetronomeButton.addEventListener('click', handlePlaybackToggle);
+}
+
+initializeMetronome();
