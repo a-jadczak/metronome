@@ -30,6 +30,27 @@ const metronome = {
   }
 };
 
+const playbackStateHandlers = {
+  [PLAYBACK_STATE.IDLE]() {
+    this.updatePlaybackUI('START', 'inactive', '');
+  },
+  [PLAYBACK_STATE.SWING]() {
+    const miliSecondsPerBeat = metronome.getSecondsPerBeat() * 1000;
+    metronomeInterval = setInterval(function () {
+      console.log(`Hey!`)
+    }, miliSecondsPerBeat);
+    this.updatePlaybackUI('STOP', 'active', WINDING_KEY_ANIMATION);
+  },
+  [PLAYBACK_STATE.RETURN]() {
+    this.updatePlaybackUI('WAIT', 'inactive', '');
+  },
+  updatePlaybackUI(buttonText, buttonState, windingKeyAnimation) {
+    toggleMetronomeButton.textContent = buttonText;
+    toggleMetronomeButton.dataset.state = buttonState;
+    windingKeyElement.style.animation = windingKeyAnimation;
+  }
+}
+
 function renderTempoScale() {
   tempoScaleBoard.innerHTML = TEMPOS
     .map((tempo) => `<span>${tempo}</span>`)
@@ -58,37 +79,23 @@ function setBeats(beats) {
   beatKnobElement.style.right = `${maxBeats - beats}%`;
 }
 
-function updatePlaybackUI(buttonText, buttonState, windingKeyAnimation) {
-  toggleMetronomeButton.textContent = buttonText;
-  toggleMetronomeButton.dataset.state = buttonState;
-  windingKeyElement.style.animation = windingKeyAnimation;
+function setPlaybackState(playbackState) {
+  metronome.playbackState = playbackState;
+  pendulumElement.dataset.state = playbackState;
+
+  updateSettingsAccessibilityUI(playbackState);
+
+  clearInterval(metronomeInterval);
+  playbackStateHandlers[playbackState]();
 }
 
-function setPlaybackState(playbackState) {
+function updateSettingsAccessibilityUI(playbackState) {
   const isAnimating = playbackState !== PLAYBACK_STATE.IDLE;
   const isReturning = playbackState === PLAYBACK_STATE.RETURN;
 
-  metronome.playbackState = playbackState;
-  pendulumElement.dataset.state = playbackState;
   tempoSlider.toggleAttribute('disabled', isAnimating);
   beatsSlider.toggleAttribute('disabled', isAnimating);
   toggleMetronomeButton.toggleAttribute('disabled', isReturning);
-  clearInterval(metronomeInterval);
-
-  if (playbackState === PLAYBACK_STATE.RETURN) {
-    updatePlaybackUI('WAIT', 'inactive', '');
-  }
-  else if (playbackState === PLAYBACK_STATE.SWING) {
-    const miliSecondsPerBeat = metronome.getSecondsPerBeat() * 1000;
-
-    metronomeInterval = setInterval(function () {
-      console.log(`Hey!`)
-    }, miliSecondsPerBeat);
-    updatePlaybackUI('STOP', 'active', WINDING_KEY_ANIMATION);
-  }
-  else {
-    updatePlaybackUI('START', 'inactive', '');
-  }
 }
 
 function togglePlaybackState() {
@@ -118,6 +125,7 @@ function initializeMetronome() {
   tempoSlider.addEventListener('input', (e) => setTempo(e.currentTarget.valueAsNumber));
   beatsSlider.addEventListener('input', (e) => setBeats(e.currentTarget.valueAsNumber));
   toggleMetronomeButton.addEventListener('click', togglePlaybackState);
+
   pendulumElement.addEventListener('animationiteration', handlePendulumAnimationIteration);
 }
 
