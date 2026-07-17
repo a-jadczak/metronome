@@ -1,19 +1,21 @@
-import { PLAYBACK_STATE } from '../constant/settings.js';
+import { PLAYBACK_STATE } from "../constant/settings.js";
 import {
   beatsSlider,
   pendulumElement,
   tempoSlider,
   toggleMetronomeButton,
-} from '../dom/elements.js';
-import { metronome } from './model.js';
+} from "../dom/elements.js";
+import { playClick } from "../services/audio-player.js";
+import { metronome } from "./model.js";
 import {
   renderBeats,
   renderPlaybackState,
   renderTempo,
   renderTempoScale,
-} from './view.js';
+} from "./view.js";
 
 let metronomeInterval;
+let currentBeatIndex = 0;
 
 function setTempo(tempo) {
   metronome.tempo = tempo;
@@ -25,16 +27,28 @@ function setBeats(beats) {
   renderBeats(beats);
 }
 
+function playCurrentBeat() {
+  const clickType = currentBeatIndex === 0 ? "strong" : "light";
+
+  playClick(clickType);
+  currentBeatIndex = (currentBeatIndex + 1) % metronome.beats;
+}
+
+function stopMetronomeInterval() {
+  clearInterval(metronomeInterval);
+  metronomeInterval = undefined;
+  currentBeatIndex = 0;
+}
+
 function startMetronomeInterval() {
   const millisecondsPerBeat = metronome.getSecondsPerBeat() * 1000;
 
-  metronomeInterval = setInterval(() => {
-    console.log('Hey!');
-  }, millisecondsPerBeat);
+  playCurrentBeat();
+  metronomeInterval = setInterval(playCurrentBeat, millisecondsPerBeat);
 }
 
 function setPlaybackState(playbackState) {
-  clearInterval(metronomeInterval);
+  stopMetronomeInterval();
   metronome.playbackState = playbackState;
 
   if (playbackState === PLAYBACK_STATE.SWING) {
@@ -53,16 +67,18 @@ function handleBeatsInput(event) {
 }
 
 function handlePlaybackToggle() {
-  const nextState = metronome.playbackState === PLAYBACK_STATE.SWING
-    ? PLAYBACK_STATE.RETURN
-    : PLAYBACK_STATE.SWING;
+  const nextState =
+    metronome.playbackState === PLAYBACK_STATE.SWING
+      ? PLAYBACK_STATE.RETURN
+      : PLAYBACK_STATE.SWING;
 
   setPlaybackState(nextState);
 }
 
 function handlePendulumAnimationIteration(event) {
-  const shouldStopAtCenter = event.animationName === 'pendulum-center-animation'
-    && metronome.playbackState === PLAYBACK_STATE.RETURN;
+  const shouldStopAtCenter =
+    event.animationName === "pendulum-center-animation" &&
+    metronome.playbackState === PLAYBACK_STATE.RETURN;
 
   if (shouldStopAtCenter) {
     setPlaybackState(PLAYBACK_STATE.IDLE);
@@ -75,8 +91,11 @@ export function initializeMetronome() {
   setBeats(metronome.beats);
   setPlaybackState(metronome.playbackState);
 
-  tempoSlider.addEventListener('input', handleTempoInput);
-  beatsSlider.addEventListener('input', handleBeatsInput);
-  toggleMetronomeButton.addEventListener('click', handlePlaybackToggle);
-  pendulumElement.addEventListener('animationiteration', handlePendulumAnimationIteration);
+  tempoSlider.addEventListener("input", handleTempoInput);
+  beatsSlider.addEventListener("input", handleBeatsInput);
+  toggleMetronomeButton.addEventListener("click", handlePlaybackToggle);
+  pendulumElement.addEventListener(
+    "animationiteration",
+    handlePendulumAnimationIteration,
+  );
 }
