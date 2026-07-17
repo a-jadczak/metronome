@@ -38,7 +38,7 @@ const PLAYBACK_UI = Object.freeze({
   },
 });
 
-const TEMPO_SCALE_STEP = 3;
+const TEMPO_SCALE_STEP = 2;
 
 export function renderTempoScale() {
   tempoScaleBoard.innerHTML = TEMPOS.filter(

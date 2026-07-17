@@ -1,0 +1,108 @@
+#metronome__pendulum {
+  --offset: 50deg;
+
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  z-index: 4;
+  width: 3.5%;
+  height: 51%;
+  min-width: 8px;
+  border-radius: 2.5rem 2.5rem 2px 2px;
+  background: linear-gradient(
+    90deg,
+    var(--silver-dark),
+    var(--silver-highlight) 42%,
+    var(--silver) 70%,
+    var(--silver-dark)
+  );
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.22);
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+}
+
+#metronome__pendulum[data-state="swing"],
+#metronome__pendulum[data-state="return"] {
+  animation:
+    pendulum-swing-animation var(--pendulum-swing-duration) linear infinite,
+    pendulum-center-animation var(--pendulum-center-duration) linear infinite;
+}
+
+.metronome__pendulum-pivot {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  z-index: 5;
+  width: 10.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3c3d40, #202124);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.34);
+  transform: translate(-50%, -50%);
+}
+
+.metronome__pendulum-pivot::before,
+.metronome__pendulum-pivot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.metronome__pendulum-pivot::before {
+  width: 53%;
+  background: linear-gradient(
+    135deg,
+    var(--silver-highlight),
+    var(--silver-dark)
+  );
+}
+
+.metronome__pendulum-pivot::after {
+  width: 28%;
+  background-color: var(--silver-light);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.metronome__sliding-weight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480%;
+  height: 14.5%;
+  min-height: 30px;
+  border: 1px solid rgba(166, 124, 0, 0.55);
+  border-radius: 10%;
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold) 48%,
+    var(--gold-dark)
+  );
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.26);
+  clip-path: var(--metronome-sliding-weight);
+  transform: translateX(-50%);
+}
+
+.metronome__sliding-weight::before,
+.metronome__sliding-weight::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 12%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: rgba(78, 46, 30, 0.56);
+  transform: translateY(-50%);
+}
+
+.metronome__sliding-weight::before {
+  left: 13%;
+}
+
+.metronome__sliding-weight::after {
+  right: 13%;
+}

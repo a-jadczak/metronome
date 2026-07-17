@@ -1,0 +1,89 @@
+#metronome {
+  position: relative;
+  width: clamp(245px, min(52vw, 65svh), 430px);
+  aspect-ratio: var(--metronome-ratio);
+  filter: drop-shadow(0 22px 20px var(--shadow));
+}
+
+.metronome__head {
+  position: absolute;
+  top: -1.5%;
+  left: 20%;
+  z-index: 7;
+  width: 60%;
+  height: 10%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #57595c 0%, #222326 75%);
+  clip-path: var(--metronome-head);
+}
+
+.metronome__head::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 35%;
+  box-shadow: 0 -2px 6px rgba(255, 255, 255, 0.08);
+}
+
+.metronome__body {
+  position: absolute;
+  top: var(--body-top);
+  right: 0;
+  bottom: var(--body-bottom);
+  left: 0;
+  z-index: 0;
+  background: /* TODO: Refactor this*/ linear-gradient(
+    103deg,
+    #505256 0%,
+    #3b3d40 9%,
+    #222326 9.5%,
+    #17181b 48%,
+    #292a2e 83%,
+    #4b4d50 83.5%,
+    #36383b 100%
+  );
+  clip-path: var(--trapezoid);
+}
+
+.metronome__body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 36%,
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.metronome__case {
+  position: absolute;
+  bottom: var(--body-bottom);
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: var(--case-height);
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 35%),
+    linear-gradient(
+      100deg,
+      var(--wood-light),
+      var(--wood) 52%,
+      var(--wood-dark)
+    );
+  clip-path: var(--metronome-case);
+}
+
+.metronome__case::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0%;
+  left: 0%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.16);
+}
