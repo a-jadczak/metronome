@@ -5,6 +5,7 @@ import {
   WINDING_KEY_ANIMATION,
 } from "../constant/settings.js";
 import { TEMPOS } from "../constant/tempos.js";
+import { TEMPO_SCALE_STEP } from "../constant/settings.js";
 import {
   beatKnobElement,
   beatsSlider,
@@ -36,8 +37,6 @@ const PLAYBACK_UI = Object.freeze({
     windingKeyAnimation: "",
   },
 });
-
-const TEMPO_SCALE_STEP = 2;
 
 export function renderTempoScale() {
   tempoScaleBoard.innerHTML = TEMPOS.filter(
