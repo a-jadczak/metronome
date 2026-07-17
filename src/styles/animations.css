@@ -1,19 +1,25 @@
 @keyframes pendulum-swing-animation {
-  0%,
-  50%,
-  100% {
+  0% {
     transform: translateX(-50%) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
   25% {
     transform: translateX(-50%) rotate(var(--offset));
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
 
   75% {
     transform: translateX(-50%) rotate(calc(var(--offset) * -1));
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  }
+
+  100% {
+    transform: translateX(-50%) rotate(0deg);
   }
 }
 
+/* Emits an iteration event once per beat so JavaScript can stop at center. */
 @keyframes pendulum-center-animation {
   from,
   to {

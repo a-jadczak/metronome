@@ -3,6 +3,6 @@
 @import "./base/global.css";
 @import "./layout.css";
 @import "./animations.css";
-/* @import "./components/metronome.css"; */
+@import "./components/metronome.css";
 @import "./components/controls.css";
 @import "./responsive.css";
