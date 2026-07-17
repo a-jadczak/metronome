@@ -7,14 +7,14 @@
 
 .metronome__head {
   position: absolute;
-  top: 0;
-  left: 21%;
+  top: -1.5%;
+  left: 20%;
   z-index: 7;
-  width: 58%;
-  height: 11%;
+  width: 60%;
+  height: 10%;
   overflow: hidden;
   background: linear-gradient(135deg, #57595c 0%, #222326 75%);
-  clip-path: polygon(50% 0, 100% 60%, 100% 100%, 0 100%, 0 60%);
+  clip-path: var(--metronome-head);
 }
 
 .metronome__head::after {
@@ -23,8 +23,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 34%;
-  background: linear-gradient(#36373a, #202124);
+  height: 35%;
   box-shadow: 0 -2px 6px rgba(255, 255, 255, 0.08);
 }
 
@@ -35,17 +34,16 @@
   bottom: var(--body-bottom);
   left: 0;
   z-index: 0;
-  background:
-    linear-gradient(
-      103deg,
-      #505256 0%,
-      #3b3d40 9%,
-      #222326 9.5%,
-      #17181b 48%,
-      #292a2e 83%,
-      #4b4d50 83.5%,
-      #36383b 100%
-    );
+  background: /* TODO: Refactor this*/ linear-gradient(
+    103deg,
+    #505256 0%,
+    #3b3d40 9%,
+    #222326 9.5%,
+    #17181b 48%,
+    #292a2e 83%,
+    #4b4d50 83.5%,
+    #36383b 100%
+  );
   clip-path: var(--trapezoid);
 }
 
@@ -53,20 +51,30 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 36%, rgba(0, 0, 0, 0.2));
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 36%,
+    rgba(0, 0, 0, 0.2)
+  );
 }
 
 .metronome__case {
   position: absolute;
-  right: 0;
   bottom: var(--body-bottom);
   left: 0;
+  right: 0;
   z-index: 3;
   height: var(--case-height);
   overflow: hidden;
   background:
     linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 35%),
-    linear-gradient(100deg, var(--wood-light), var(--wood) 52%, var(--wood-dark));
+    linear-gradient(
+      100deg,
+      var(--wood-light),
+      var(--wood) 52%,
+      var(--wood-dark)
+    );
   clip-path: var(--metronome-case);
 }
 
@@ -74,8 +82,8 @@
   content: "";
   position: absolute;
   top: 0;
-  right: 3%;
-  left: 3%;
+  right: 0%;
+  left: 0%;
   height: 2px;
   background-color: rgba(255, 255, 255, 0.16);
 }
@@ -88,13 +96,18 @@
   display: flex;
   flex-direction: column;
   width: 18%;
-  height: 49%;
+  height: 50%;
   padding-block: 2.5%;
   overflow: hidden;
   color: var(--black-light);
-  background: linear-gradient(90deg, var(--cream-dark), #fffdf8 17%, #f7f3eb 82%, #d8d1c6);
+  background: linear-gradient(
+    90deg,
+    var(--cream-dark),
+    #fffdf8 17%,
+    #f7f3eb 82%,
+    #d8d1c6
+  );
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.14);
-  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
 }
 
 .metronome__tempo-scale-board::before {
@@ -111,10 +124,9 @@
 .metronome__tempo-scale-board > span {
   position: relative;
   display: grid;
-  flex: 1;
   place-items: center;
+  flex: 1;
   width: 100%;
-  min-height: 0;
 }
 
 .metronome__tempo-scale-board > span::after {
@@ -122,11 +134,10 @@
   width: 48%;
   height: 2px;
   background-color: var(--black-light);
-  border-radius: 999px;
 }
 
 .metronome__tempo-scale-board > span:nth-child(3n + 1)::after {
-  width: 66%;
+  width: 58%;
 }
 
 .metronome__tempo-scale-board small {
@@ -149,11 +160,17 @@
   top: 11%;
   left: 50%;
   z-index: 4;
-  width: 3.8%;
+  width: 3.5%;
   height: 51%;
   min-width: 8px;
-  border-radius: 999px 999px 2px 2px;
-  background: linear-gradient(90deg, var(--silver-dark), var(--silver-highlight) 42%, var(--silver) 70%, var(--silver-dark));
+  border-radius: 2.5rem 2.5rem 2px 2px;
+  background: linear-gradient(
+    90deg,
+    var(--silver-dark),
+    var(--silver-highlight) 42%,
+    var(--silver) 70%,
+    var(--silver-dark)
+  );
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.22);
   transform: translateX(-50%);
   transform-origin: 50% 100%;
@@ -192,7 +209,11 @@
 
 .metronome__pendulum-pivot::before {
   width: 53%;
-  background: linear-gradient(135deg, var(--silver-highlight), var(--silver-dark));
+  background: linear-gradient(
+    135deg,
+    var(--silver-highlight),
+    var(--silver-dark)
+  );
 }
 
 .metronome__pendulum-pivot::after {
@@ -210,9 +231,14 @@
   min-height: 30px;
   border: 1px solid rgba(166, 124, 0, 0.55);
   border-radius: 10%;
-  background: linear-gradient(135deg, var(--gold-light), var(--gold) 48%, var(--gold-dark));
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold) 48%,
+    var(--gold-dark)
+  );
   box-shadow: 0 5px 9px rgba(0, 0, 0, 0.26);
-  clip-path: polygon(7% 0, 100% 8%, 93% 100%, 0 92%);
+  clip-path: var(--metronome-sliding-weight);
   transform: translateX(-50%);
 }
 
@@ -267,8 +293,17 @@
   border: 1px solid var(--gold-dark);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 25%, rgba(255, 255, 255, 0.34), transparent 28%),
-    linear-gradient(135deg, var(--gold-light), var(--gold) 52%, var(--gold-dark));
+    radial-gradient(
+      circle at 32% 25%,
+      rgba(255, 255, 255, 0.34),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold) 52%,
+      var(--gold-dark)
+    );
   box-shadow:
     0 8px 0 rgba(78, 46, 30, 0.42),
     0 12px 14px rgba(0, 0, 0, 0.2);
@@ -314,8 +349,13 @@
   background:
     radial-gradient(circle at 50% 27%, var(--cream) 0 15%, transparent 16%),
     radial-gradient(circle at 50% 73%, var(--cream) 0 15%, transparent 16%),
-    linear-gradient(135deg, var(--gold-light), var(--gold) 50%, var(--gold-dark));
-  clip-path: polygon(28% 0, 72% 0, 100% 14%, 86% 45%, 86% 55%, 100% 86%, 72% 100%, 28% 100%, 0 86%, 14% 55%, 14% 45%, 0 14%);
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold) 50%,
+      var(--gold-dark)
+    );
+  clip-path: var(--metronome-winding-key);
   filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.2));
   transform: translateY(-50%);
 }

@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit&family=Roboto+Mono&display=swap');
-@import './base/variables.css';
-@import './base/global.css';
-@import './layout.css';
-@import './animations.css';
-@import './components/metronome.css';
-@import './components/controls.css';
-@import './responsive.css';
+@import url("https://fonts.googleapis.com/css2?family=Outfit&family=Roboto+Mono&display=swap");
+@import "./base/variables.css";
+@import "./base/global.css";
+@import "./layout.css";
+@import "./animations.css";
+/* @import "./components/metronome.css"; */
+@import "./components/controls.css";
+@import "./responsive.css";
