@@ -22,8 +22,11 @@
   --silver-highlight: #f8f9fa;
 
   --white: #ffffff;
+  --cream: #f5f0e8;
+  --cream-dark: #ded7cc;
   --gray: #707070;
   --gray-light: #d9d9d9;
+  --shadow: rgba(35, 25, 18, 0.24);
 
   /* Shapes */
   --trapezoid: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);

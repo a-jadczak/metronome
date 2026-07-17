@@ -1,4 +1,10 @@
-import { PLAYBACK_STATE, WEIGHT_TRAVEL_PERCENT, WINDING_KEY_ANIMATION } from '../constant/settings.js';
+import {
+  BEAT_DIAL_MAX_ANGLE,
+  BEAT_DIAL_MIN_ANGLE,
+  PLAYBACK_STATE,
+  WEIGHT_TRAVEL_PERCENT,
+  WINDING_KEY_ANIMATION,
+} from '../constant/settings.js';
 import { TEMPOS } from '../constant/tempos.js';
 import {
   beatKnobElement,
@@ -32,9 +38,12 @@ const PLAYBACK_UI = Object.freeze({
   },
 });
 
+const TEMPO_SCALE_STEP = 3;
+
 export function renderTempoScale() {
   tempoScaleBoard.innerHTML = TEMPOS
-    .map((tempo) => `<span>${tempo}</span>`)
+    .filter((_, index) => index % TEMPO_SCALE_STEP === 0)
+    .map((tempo) => `<span><small>${tempo}</small></span>`)
     .join('');
 }
 
@@ -49,11 +58,13 @@ export function renderTempo(tempo, secondsPerBeat) {
 }
 
 export function renderBeats(beats) {
-  const maxBeats = Number(beatsSlider.max);
+  const dialProgress = getRangeProgress(beatsSlider, beats);
+  const rotationRange = BEAT_DIAL_MAX_ANGLE - BEAT_DIAL_MIN_ANGLE;
+  const dialRotation = BEAT_DIAL_MIN_ANGLE + (dialProgress * rotationRange);
 
   beatsSlider.value = beats;
   beatsSliderLabel.textContent = `Beats: ${beats}`;
-  beatKnobElement.style.right = `${maxBeats - beats}%`;
+  beatKnobElement.style.transform = `rotate(${dialRotation}deg)`;
 }
 
 export function renderPlaybackState(playbackState) {

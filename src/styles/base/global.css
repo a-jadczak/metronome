@@ -7,8 +7,11 @@
 
 body {
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   min-height: 100svh;
-  background: var(--white);
-  background: radial-gradient(circle, var(--white) 0%, var(--gradient) 65%, var(--white) 100%);
+  overflow-x: hidden;
+  color: var(--black-soft);
+  background:
+    radial-gradient(circle at 50% 38%, var(--white) 0%, transparent 48%),
+    linear-gradient(135deg, #f9f6f0 0%, #eee8df 100%);
 }

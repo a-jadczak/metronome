@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A simple metronome app" />
     <meta name="author" content="Arkadiusz Jadczak" />
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/style.css" />
     <script defer type="module" src="/src/main.js"></script>
     <title>Metronome</title>
   </head>
@@ -14,15 +14,18 @@
       <h1>Metronome</h1>
     </header>
     <main>
-      <div id="metronome">
+      <div id="metronome" aria-label="Mechanical metronome illustration">
+        <div class="metronome__body"></div>
+        <div class="metronome__tempo-scale-board"></div>
         <div id="metronome__pendulum">
           <div class="metronome__sliding-weight"></div>
         </div>
-        <div class="metronome__tempo-scale-board"></div>
+        <div class="metronome__pendulum-pivot"></div>
         <div class="metronome__head"></div>
-        <div class="metronome__body"></div>
         <div class="metronome__case"></div>
-        <div class="metronome__beat-knob"></div>
+        <div class="metronome__beat-dial" aria-hidden="true">
+          <div class="metronome__beat-knob"></div>
+        </div>
         <div class="metronome__winding-key"></div>
         <div class="metronome__feet-container">
           <div class="metronome__foot"></div>
@@ -30,15 +33,15 @@
         </div>
       </div>
     </main>
-    <footer>
-      <div>
+    <footer class="controls" aria-label="Metronome controls">
+      <div class="controls__group">
         <label for="tempo-slider">120 BPM</label>
-        <input type="range" id="tempo-slider" min="40" max="208" value="120"/>
+        <input type="range" id="tempo-slider" min="40" max="208" value="120" />
       </div>
       <button id="toggle-metronome-button">START</button>
-      <div>
+      <div class="controls__group">
         <label for="beats-slider">Beats: 1</label>
-        <input type="range" id="beats-slider" min="1" max="8" value="4"/>
+        <input type="range" id="beats-slider" min="1" max="8" value="1" />
       </div>
     </footer>
   </body>
