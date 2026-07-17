@@ -1,6 +1,5 @@
 import {
-  BEAT_DIAL_MAX_ANGLE,
-  BEAT_DIAL_MIN_ANGLE,
+  BEAT_KNOB_ROTATION_DEGREE,
   PLAYBACK_STATE,
   WEIGHT_TRAVEL_PERCENT,
   WINDING_KEY_ANIMATION,
@@ -66,9 +65,7 @@ export function renderTempo(tempo, secondsPerBeat) {
 }
 
 export function renderBeats(beats) {
-  const dialProgress = getRangeProgress(beatsSlider, beats);
-  const rotationRange = BEAT_DIAL_MAX_ANGLE - BEAT_DIAL_MIN_ANGLE;
-  const dialRotation = BEAT_DIAL_MIN_ANGLE + dialProgress * rotationRange;
+  const dialRotation = (beatsSlider.value - 1) * BEAT_KNOB_ROTATION_DEGREE;
 
   beatsSlider.value = beats;
   beatsSliderLabel.textContent = `Beats: ${beats}`;
