@@ -4,3 +4,15 @@ preview/
 # Local Codex and agent workspace files
 .agents/
 .codex/
+
+node_modules/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db

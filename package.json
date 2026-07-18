@@ -1,0 +1,24 @@
+{
+  "name": "metronome",
+  "version": "1.0.0",
+  "description": "A simple metronome app",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-jadczak/metronome.git"
+  },
+  "keywords": [],
+  "author": "Arkadiusz Jadczak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-jadczak/metronome/issues"
+  },
+  "homepage": "https://github.com/a-jadczak/metronome#readme",
+  "devDependencies": {
+    "vitest": "^4.1.10"
+  }
+}
