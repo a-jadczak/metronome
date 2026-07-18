@@ -89,3 +89,20 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+.volume-control__waves,
+.volume-control__mute-mark {
+  fill: none;
+}
+
+.volume-control__mute-mark {
+  display: none;
+}
+
+.volume-control__icon[data-muted="true"] .volume-control__waves {
+  display: none;
+}
+
+.volume-control__icon[data-muted="true"] .volume-control__mute-mark {
+  display: block;
+}

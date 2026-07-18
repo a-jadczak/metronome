@@ -16,6 +16,7 @@ import {
   tempoSlider,
   tempoSliderLabel,
   toggleMetronomeButton,
+  volumeIconElement,
   volumeSlider,
   windingKeyElement,
 } from "../dom/elements.js";
@@ -74,6 +75,7 @@ export function renderBeats(beats) {
 
 export function renderVolume(volume) {
   volumeSlider.value = volume;
+  volumeIconElement.dataset.muted = volume === 0;
 }
 
 export function renderPlaybackState(playbackState) {
