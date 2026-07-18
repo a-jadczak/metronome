@@ -5,7 +5,7 @@ import {
   tempoSlider,
   toggleMetronomeButton,
 } from "../dom/elements.js";
-import { playClick } from "../services/audio-player.js";
+import { playClick, prepareAudio } from "../services/audio-player.js";
 import { metronome } from "./model.js";
 import {
   renderBeats,
@@ -66,11 +66,20 @@ function handleBeatsInput(event) {
   setBeats(event.currentTarget.valueAsNumber);
 }
 
-function handlePlaybackToggle() {
+async function handlePlaybackToggle() {
   const nextState =
     metronome.playbackState === PLAYBACK_STATE.SWING
       ? PLAYBACK_STATE.RETURN
       : PLAYBACK_STATE.SWING;
+
+  if (nextState === PLAYBACK_STATE.SWING) {
+    try {
+      await prepareAudio();
+    } catch (error) {
+      console.error("Could not prepare metronome audio:", error);
+      return;
+    }
+  }
 
   setPlaybackState(nextState);
 }
