@@ -1,30 +1,33 @@
+const SOUND_BASE = new URL("/public/sounds/", import.meta.url);
+
 const CLICK_URLS = {
-  strong: new URL("/public/sounds/strong-click-trimmed.wav", import.meta.url),
-  light: new URL("/public/sounds/light-click-trimmed.wav", import.meta.url),
+  strong: new URL("strong-click-trimmed.wav", SOUND_BASE),
+  light: new URL("light-click-trimmed.wav", SOUND_BASE),
 };
 
 const audioContext = new AudioContext();
 const clickBuffers = {};
 
-const clickBuffersReady = Promise.all(
-  Object.entries(CLICK_URLS).map(async ([type, url]) => {
-    const response = await fetch(url);
+export async function prepareBuffers() {
+  Promise.all(
+    Object.entries(CLICK_URLS).map(async ([type, url]) => {
+      const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error(`Could not load ${type} click: ${response.status}`);
-    }
+      if (!response.ok) {
+        throw new Error(`Could not load ${type} click: ${response.status}`);
+      }
 
-    const encodedAudio = await response.arrayBuffer();
-    clickBuffers[type] = await audioContext.decodeAudioData(encodedAudio);
-  }),
-);
+      const encodedAudio = await response.arrayBuffer();
+      clickBuffers[type] = await audioContext.decodeAudioData(encodedAudio);
+    }),
+  );
+}
 
+/* Users must interact with the website before any audio can be played due to browser security reasons */
 export async function prepareAudio() {
   if (audioContext.state === "suspended") {
     await audioContext.resume();
   }
-
-  await clickBuffersReady;
 }
 
 export function playClick(type) {
@@ -35,9 +38,8 @@ export function playClick(type) {
     return;
   }
 
-  const source = audioContext.createBufferSource();
+  const source = new AudioBufferSourceNode(audioContext, { buffer });
 
-  source.buffer = buffer;
   source.connect(audioContext.destination);
   source.start();
 }

@@ -5,7 +5,11 @@ import {
   tempoSlider,
   toggleMetronomeButton,
 } from "../dom/elements.js";
-import { playClick, prepareAudio } from "../services/audio-player.js";
+import {
+  playClick,
+  prepareAudio,
+  prepareBuffers,
+} from "../services/audio-player.js";
 import { metronome } from "./model.js";
 import {
   renderBeats,
@@ -95,6 +99,7 @@ function handlePendulumAnimationIteration(event) {
 }
 
 export function initializeMetronome() {
+  prepareBuffers();
   renderTempoScale();
   setTempo(metronome.tempo);
   setBeats(metronome.beats);
