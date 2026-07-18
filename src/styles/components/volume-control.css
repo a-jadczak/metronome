@@ -1,0 +1,91 @@
+.volume-control {
+  position: fixed;
+  z-index: 10;
+  bottom: calc(50% - 2rem);
+  right: 0;
+  display: flex;
+  width: 3.75rem;
+  height: 4rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: 1rem 0 0 1rem;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  box-shadow: 0 0.5rem 1.5rem rgba(78, 46, 30, 0.24);
+  transition:
+    height 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.volume-control:hover,
+.volume-control:focus-within {
+  height: 13.5rem;
+  box-shadow: 0 0.75rem 2rem rgba(78, 46, 30, 0.32);
+}
+
+.volume-control__slider {
+  display: flex;
+  width: 3.75rem;
+  height: 9.5rem;
+  flex: 0 0 9.5rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+}
+
+.volume-control:hover .volume-control__slider,
+.volume-control:focus-within .volume-control__slider {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.volume-control__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+#volume-slider {
+  width: 0.45rem;
+  height: 8rem;
+  border-radius: 0.25rem;
+  accent-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.4);
+  direction: rtl;
+  writing-mode: vertical-lr;
+}
+
+#volume-slider:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 0.35rem;
+}
+
+.volume-control__icon {
+  display: grid;
+  width: 3.75rem;
+  height: 4rem;
+  flex: 0 0 4rem;
+  place-items: center;
+}
+
+.volume-control__icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  overflow: visible;
+  fill: var(--white);
+  stroke: var(--white);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

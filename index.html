@@ -33,6 +33,25 @@
         </div>
       </div>
     </main>
+    <aside class="volume-control" aria-label="Volume control">
+      <div class="volume-control__slider">
+        <label class="volume-control__label" for="volume-slider">Volume</label>
+        <input
+          id="volume-slider"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+        />
+      </div>
+      <div class="volume-control__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img">
+          <path d="M11 5 6.5 9H3v6h3.5l4.5 4V5Z" />
+          <path d="M15 9.5a4 4 0 0 1 0 5" />
+          <path d="M17.5 7a7.5 7.5 0 0 1 0 10" />
+        </svg>
+      </div>
+    </aside>
     <footer class="controls" aria-label="Metronome controls">
       <div class="controls__group">
         <label for="tempo-slider">120 BPM</label>

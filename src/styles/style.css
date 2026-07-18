@@ -5,4 +5,5 @@
 @import "./animations.css";
 @import "./components/metronome.css";
 @import "./components/controls.css";
+@import "./components/volume-control.css";
 @import "./responsive.css";
