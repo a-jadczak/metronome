@@ -1,3 +1,5 @@
+import { DEFAULT_VOLUME } from "../constant/settings.js";
+
 const SOUND_BASE = new URL("../../../public/sounds/", import.meta.url);
 
 const CLICK_URLS = {
@@ -6,7 +8,10 @@ const CLICK_URLS = {
 };
 
 const audioContext = new AudioContext();
+const outputGain = new GainNode(audioContext, { gain: DEFAULT_VOLUME / 100 });
 const clickBuffers = {};
+
+outputGain.connect(audioContext.destination);
 
 export async function prepareBuffers() {
   await Promise.all(
@@ -30,6 +35,12 @@ export async function prepareAudio() {
   }
 }
 
+export function setOutputVolume(volume) {
+  const normalizedVolume = volume / 100;
+
+  outputGain.gain.setValueAtTime(normalizedVolume, audioContext.currentTime);
+}
+
 export function playClick(type) {
   const buffer = clickBuffers[type];
 
@@ -40,6 +51,6 @@ export function playClick(type) {
 
   const source = new AudioBufferSourceNode(audioContext, { buffer });
 
-  source.connect(audioContext.destination);
+  source.connect(outputGain);
   source.start();
 }

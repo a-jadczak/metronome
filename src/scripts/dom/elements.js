@@ -3,6 +3,7 @@ export const tempoSlider = document.querySelector('#tempo-slider');
 export const tempoSliderLabel = document.querySelector('label[for="tempo-slider"]');
 export const beatsSlider = document.querySelector('#beats-slider');
 export const beatsSliderLabel = document.querySelector('label[for="beats-slider"]');
+export const volumeSlider = document.querySelector('#volume-slider');
 export const toggleMetronomeButton = document.querySelector('#toggle-metronome-button');
 export const pendulumElement = document.querySelector('#metronome__pendulum');
 export const slidingWeightElement = document.querySelector('.metronome__sliding-weight');

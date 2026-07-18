@@ -16,6 +16,7 @@ import {
   tempoSlider,
   tempoSliderLabel,
   toggleMetronomeButton,
+  volumeSlider,
   windingKeyElement,
 } from "../dom/elements.js";
 import { getRangeProgress } from "../utils/range.js";
@@ -69,6 +70,10 @@ export function renderBeats(beats) {
   beatsSlider.value = beats;
   beatsSliderLabel.textContent = `Beats: ${beats}`;
   beatKnobElement.style.transform = `rotate(${dialRotation}deg)`;
+}
+
+export function renderVolume(volume) {
+  volumeSlider.value = volume;
 }
 
 export function renderPlaybackState(playbackState) {

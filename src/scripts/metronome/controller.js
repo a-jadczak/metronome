@@ -4,11 +4,13 @@ import {
   pendulumElement,
   tempoSlider,
   toggleMetronomeButton,
+  volumeSlider,
 } from "../dom/elements.js";
 import {
   playClick,
   prepareAudio,
   prepareBuffers,
+  setOutputVolume,
 } from "../services/audio-player.js";
 import { metronome } from "./model.js";
 import {
@@ -16,6 +18,7 @@ import {
   renderPlaybackState,
   renderTempo,
   renderTempoScale,
+  renderVolume,
 } from "./view.js";
 
 let metronomeInterval;
@@ -29,6 +32,12 @@ function setTempo(tempo) {
 function setBeats(beats) {
   metronome.beats = beats;
   renderBeats(beats);
+}
+
+function setVolume(volume) {
+  metronome.volume = volume;
+  setOutputVolume(volume);
+  renderVolume(volume);
 }
 
 function playCurrentBeat() {
@@ -70,6 +79,10 @@ function handleBeatsInput(event) {
   setBeats(event.currentTarget.valueAsNumber);
 }
 
+function handleVolumeInput(event) {
+  setVolume(event.currentTarget.valueAsNumber);
+}
+
 async function handlePlaybackToggle() {
   const nextState =
     metronome.playbackState === PLAYBACK_STATE.SWING
@@ -103,10 +116,12 @@ export async function initializeMetronome() {
   renderTempoScale();
   setTempo(metronome.tempo);
   setBeats(metronome.beats);
+  setVolume(metronome.volume);
   setPlaybackState(metronome.playbackState);
 
   tempoSlider.addEventListener("input", handleTempoInput);
   beatsSlider.addEventListener("input", handleBeatsInput);
+  volumeSlider.addEventListener("input", handleVolumeInput);
   toggleMetronomeButton.addEventListener("click", handlePlaybackToggle);
   pendulumElement.addEventListener(
     "animationiteration",
