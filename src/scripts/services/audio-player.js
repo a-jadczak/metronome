@@ -1,4 +1,4 @@
-const SOUND_BASE = new URL("/public/sounds/", import.meta.url);
+const SOUND_BASE = new URL("../../../public/sounds/", import.meta.url);
 
 const CLICK_URLS = {
   strong: new URL("strong-click-trimmed.wav", SOUND_BASE),
@@ -9,7 +9,7 @@ const audioContext = new AudioContext();
 const clickBuffers = {};
 
 export async function prepareBuffers() {
-  Promise.all(
+  await Promise.all(
     Object.entries(CLICK_URLS).map(async ([type, url]) => {
       const response = await fetch(url);
 

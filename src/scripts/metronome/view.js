@@ -64,7 +64,7 @@ export function renderTempo(tempo, secondsPerBeat) {
 }
 
 export function renderBeats(beats) {
-  const dialRotation = (beatsSlider.value - 1) * BEAT_KNOB_ROTATION_DEGREE;
+  const dialRotation = (beats - 1) * BEAT_KNOB_ROTATION_DEGREE;
 
   beatsSlider.value = beats;
   beatsSliderLabel.textContent = `Beats: ${beats}`;

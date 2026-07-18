@@ -98,8 +98,8 @@ function handlePendulumAnimationIteration(event) {
   }
 }
 
-export function initializeMetronome() {
-  prepareBuffers();
+export async function initializeMetronome() {
+  await prepareBuffers();
   renderTempoScale();
   setTempo(metronome.tempo);
   setBeats(metronome.beats);
