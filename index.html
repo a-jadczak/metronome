@@ -6,7 +6,7 @@
     <meta name="description" content="A simple metronome app" />
     <meta name="author" content="Arkadiusz Jadczak" />
     <link rel="stylesheet" href="src/styles/style.css" />
-    <script defer type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
     <title>Metronome</title>
   </head>
   <body>
@@ -36,13 +36,7 @@
     <aside class="volume-control" aria-label="Volume control">
       <div class="volume-control__slider">
         <label class="volume-control__label" for="volume-slider">Volume</label>
-        <input
-          id="volume-slider"
-          type="range"
-          min="0"
-          max="100"
-          value="50"
-        />
+        <input id="volume-slider" type="range" min="0" max="100" value="50" />
       </div>
       <div class="volume-control__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" role="img">
