@@ -5,7 +5,10 @@
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "test:browser": "vitest --config=vitest.browser.config.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,8 @@
   },
   "homepage": "https://github.com/a-jadczak/metronome#readme",
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
+    "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
     "jsdom": "^29.1.1",
     "vitest": "^4.1.10"
