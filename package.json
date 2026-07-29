@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/a-jadczak/metronome#readme",
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^29.1.1",
     "vitest": "^4.1.10"
   }
 }
