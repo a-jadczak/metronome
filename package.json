@@ -4,9 +4,9 @@
   "description": "A simple metronome app",
   "scripts": {
     "test": "vitest",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --browser.headless=false",
+    "test:run": "vitest run --browser.headless",
     "test:coverage": "vitest --coverage",
-    "test:browser": "vitest --config=vitest.browser.config.js",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
@@ -24,8 +24,9 @@
   "devDependencies": {
     "@playwright/test": "^1.62.0",
     "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/browser-preview": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
-    "jsdom": "^29.1.1",
+    "@vitest/ui": "^4.1.10",
     "vitest": "^4.1.10"
   }
 }

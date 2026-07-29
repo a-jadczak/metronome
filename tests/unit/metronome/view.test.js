@@ -1,5 +1,5 @@
-// @vitest-environment jsdom
 import { describe, test, expect, beforeEach } from "vitest";
+import { page } from "vitest/browser"
 
 let renderTempoScale;
 
@@ -8,7 +8,7 @@ describe("view.js", () => {
     vi.resetModules();
 
     document.body.innerHTML = `
-        <div class="metronome__tempo-scale-board"></div>
+      <div class="metronome__tempo-scale-board"></div>
     `;
 
     const view = await import("../../../src/scripts/metronome/view.js");
@@ -16,9 +16,12 @@ describe("view.js", () => {
   });
 
   describe("renderTempoScale", () => {
-    test("renders tempo elements", () => {
-      renderTempoScale();
-      //expect(document.querySelectorAll("small").map((e) => {}));
+    test("renders tempo elements", async () => {
+    renderTempoScale();
+
+    const tempoElements = document.querySelectorAll(".metronome__tempo-scale-board small",);
+
+    expect(tempoElements.length).toBeGreaterThan(0);
     });
   });
 });
