@@ -3,6 +3,9 @@ import { playwright } from "@vitest/browser-playwright";
 
 export default defineConfig({
   test: {
+    include: [
+      "tests/unit/**/*.test.js",
+    ],
     globals: true,
     browser: {
       enabled: true,
