@@ -1,11 +1,11 @@
 import { DEFAULT_VOLUME } from "../constant/settings.js";
 
-const SOUND_BASE = new URL("../../../public/sounds/", import.meta.url);
+ const SOUND_BASE = `${import.meta.env.BASE_URL}sounds/`;
 
-const CLICK_URLS = {
-  strong: new URL("strong-click-trimmed.wav", SOUND_BASE),
-  light: new URL("light-click-trimmed.wav", SOUND_BASE),
-};
+  const CLICK_URLS = {
+    strong: `${SOUND_BASE}strong-click-trimmed.wav`,
+    light: `${SOUND_BASE}light-click-trimmed.wav`,
+  };
 
 const audioContext = new AudioContext();
 const outputGain = new GainNode(audioContext, { gain: DEFAULT_VOLUME / 100 });

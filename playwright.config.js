@@ -4,13 +4,13 @@ export default defineConfig({
   testDir: "./tests/e2e",
 
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://127.0.0.1:5173",
     trace: "on-first-retry",
   },
 
   webServer: {
-    command: "npx http-server . -p 3000",
-    port: 3000,
+    command: "npm run dev",
+    url: "http://127.0.0.1:5173",
     reuseExistingServer: !process.env.CI,
   },
 
