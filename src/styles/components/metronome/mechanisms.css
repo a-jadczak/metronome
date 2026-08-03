@@ -88,7 +88,6 @@
       var(--gold) 50%,
       var(--gold-dark)
     );
-  clip-path: var(--metronome-winding-key);
   filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.2));
   transform: translateY(-50%);
 }
