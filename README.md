@@ -7,6 +7,7 @@
 **A responsive, browser-based mechanical metronome**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-7c3aed)](https://metronome-five-ruby.vercel.app/)
+[![Tests](https://github.com/a-jadczak/metronome/actions/workflows/tests.yml/badge.svg)](https://github.com/a-jadczak/metronome/actions/workflows/tests.yml)
 [![Last Commit](https://img.shields.io/github/last-commit/a-jadczak/metronome)](https://github.com/a-jadczak/metronome/commits)
 [![Repository Size](https://img.shields.io/github/repo-size/a-jadczak/metronome)](https://github.com/a-jadczak/metronome)
 [![Code Size](https://img.shields.io/github/languages/code-size/a-jadczak/metronome)](https://github.com/a-jadczak/metronome)
