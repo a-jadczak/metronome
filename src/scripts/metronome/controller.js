@@ -122,6 +122,14 @@ export async function initializeMetronome() {
   tempoSlider.addEventListener("input", handleTempoInput);
   beatsSlider.addEventListener("input", handleBeatsInput);
   volumeSlider.addEventListener("input", handleVolumeInput);
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.code === "Space" &&
+      metronome.playbackState != PLAYBACK_STATE.RETURN
+    ) {
+      handlePlaybackToggle();
+    }
+  });
   toggleMetronomeButton.addEventListener("click", handlePlaybackToggle);
   pendulumElement.addEventListener(
     "animationiteration",
