@@ -1,0 +1,15 @@
+type:
+  - Web App
+status: Completed
+
+technologies:
+  - JavaScript
+  - HTML
+  - CSS
+  - Web Audio API
+
+banner: .github/assets/banner.png
+
+gallery:
+  - .github/assets/screenshot-desktop-01.png
+  - .github/assets/screenshot-mobile-01.png
